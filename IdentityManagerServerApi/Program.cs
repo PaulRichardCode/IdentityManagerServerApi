@@ -22,6 +22,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     throw new InvalidOperationException("Connection string is not Found"));
 });
 
+
+
+
+
+
+
 //Adding Identity JWT Authentication
 //1. Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
