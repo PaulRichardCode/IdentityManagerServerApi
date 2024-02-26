@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +63,7 @@ builder.Services.AddSwaggerGen(options =>
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey
     });
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
 });   
 
 var app = builder.Build();
@@ -74,6 +76,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
