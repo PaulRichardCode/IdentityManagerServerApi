@@ -5,8 +5,7 @@ namespace IdentityManagerServerApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SuperHeroController : ControllerBase
+    public class AppController : ControllerBase
     {
-        
     }
 }
