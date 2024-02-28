@@ -23,6 +23,29 @@ namespace IdentityManagerServerApi.Repositories
 
             var user = await userManager.FindByEmailAsync(newUser.Email);
             if (user is not null) return new GeneralResponse(false, "User Registered Already");
+
+            var createUser = await userManager.CreateAsync(newUser!, userDTO.Password);
+            if (!createUser.Succeeded) return new GeneralResponse(false, "Error occured... please try again");
+
+            //assign Default role: Admin to first reister: Rest is user
+            var checkAdmin = await roleManager.FindByNameAsync("Admin");    
+            if(checkAdmin is null)
+            {
+                await roleManager.CreateAsync(new IdentityRole() { Name = "Admin" });
+                await userManager.AddToRoleAsync(newUser, "Admin");
+                return new GeneralResponse(true, "Account Created");
+            } else
+            {
+                var checkUser = await roleManager.FindByNameAsync("User");
+                if(checkUser is null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole() { Name = "User" });
+                    await userManager.AddToRoleAsync(newUser, "User");
+                    return new GeneralResponse(true, "Account Created");
+                }
+            }
+            throw new NotImplementedException();
+
         }
 
         public Task<ServiceResponses.LoginResponse> LoginAccount(LoginDTO loginDTO)
