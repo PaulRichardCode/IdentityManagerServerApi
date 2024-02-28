@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
-        ValidateIssuer = true,
+        ValidateIssuer = true,  
         ValidateAudience = true,
         ValidateIssuerSigningKey = true,
         ValidateLifetime = true,
