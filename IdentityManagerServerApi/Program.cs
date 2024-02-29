@@ -27,9 +27,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 
-
-
-
 //Adding Identity JWT Authentication
 //1. Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
