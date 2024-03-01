@@ -67,7 +67,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<IUserAccount, AccountRepository>();
 var app = builder.Build();
 
-// Configure the HTTP hj request pipeline.
+// Configure the HTTP hj request pipeline. bro
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
