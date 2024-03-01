@@ -1,4 +1,6 @@
+using ClassLibrary1.Contracts;
 using IdentityManagerServerApi.Data;
+using IdentityManagerServerApi.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -61,8 +63,8 @@ builder.Services.AddSwaggerGen(options =>
         Type = SecuritySchemeType.ApiKey
     });
     options.OperationFilter<SecurityRequirementsOperationFilter>();
-});   
-
+});
+builder.Services.AddScoped<IUserAccount, AccountRepository>();
 var app = builder.Build();
 
 // Configure the HTTP hj request pipeline.
